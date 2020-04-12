@@ -484,15 +484,15 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // FLSun
-  //#define DEFAULT_Kp 36.16
-  //#define DEFAULT_Ki 3.09
-  //#define DEFAULT_Kd 105.90
 
+  #define DEFAULT_Kp 26.44 //31.8
+  #define DEFAULT_Ki 1.78 //2.39
+  #define DEFAULT_Kd 97.95 //105.53
 
   // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  // #define DEFAULT_Kp 22.2
+  // #define DEFAULT_Ki 1.08
+  // #define DEFAULT_Kd 114
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -540,13 +540,14 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   // Flsun Cube 3D Bed
-  //#define DEFAULT_bedKp 578.89
-  //#define DEFAULT_bedKi 113.98
-  //#define DEFAULT_bedKd 735.04
+  #define DEFAULT_bedKp 111.78 //289.90
+  #define DEFAULT_bedKi 22.01 //36.11
+  #define DEFAULT_bedKd 378.49 //581.87
 
-  #define  DEFAULT_bedKp 250 //205.40
-  #define  DEFAULT_bedKi 18 //36.34
-  #define  DEFAULT_bedKd 950.0 //290.25
+
+  // #define  DEFAULT_bedKp 250 //205.40
+  // #define  DEFAULT_bedKi 18 //36.34
+  // #define  DEFAULT_bedKd 950.0 //290.25
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
@@ -972,7 +973,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.25} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.025} //default: { 10, 10, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
