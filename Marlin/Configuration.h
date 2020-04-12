@@ -105,7 +105,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT -1 //default: 0 //usb port
+#define SERIAL_PORT 0 //usb port
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
@@ -114,7 +114,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT_2 0 //default: undefined //serial lcd port
+//#define SERIAL_PORT_2 0 //default: undefined //serial lcd port
 
 /**
  * This setting determines the communication speed of the printer.
@@ -125,7 +125,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200 //default: 250000
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -400,6 +400,12 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
+  // FLSun
+//  #define DEFAULT_Kp 36.16
+//  #define DEFAULT_Ki 3.09
+//  #define DEFAULT_Kd 105.90
+
+
   // Ultimaker
   #define DEFAULT_Kp 22.2
   #define DEFAULT_Ki 1.08
@@ -451,6 +457,10 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   // Flsun Cube 3D Bed
+//  #define DEFAULT_bedKp 578.89
+//  #define DEFAULT_bedKi 113.98
+//  #define DEFAULT_bedKd 735.04
+
   #define  DEFAULT_bedKp 250 //205.40
   #define  DEFAULT_bedKi 18 //36.34
   #define  DEFAULT_bedKd 950.0 //290.25
@@ -479,8 +489,8 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-#define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+//#define PREVENT_COLD_EXTRUSION
+//#define EXTRUDE_MINTEMP 170
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -649,14 +659,15 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT    { 100, 100, 400, 150 } //default: { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT    { 100, 100, 400, 154 } //default: { 80, 80, 4000, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 333, 300, 25, 35 } //default: { 300, 300, 5, 25 }
+
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -664,7 +675,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 5000 } //default: { 3000, 3000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1200, 600, 300, 10000 } //default: { 3000, 3000, 100, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -674,9 +685,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          500 //default: 3000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  500 //default: 3000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1000 //default: 3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          5000 //default: 3000    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  3000  // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   1000  //default: 1000 // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
@@ -817,15 +828,20 @@
  *      O-- FRONT --+
  *    (0,0)
  */
-#define X_PROBE_OFFSET_FROM_EXTRUDER -43  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER -20  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 2   // Z offset: -below +above  [the nozzle]
+#define X_PROBE_OFFSET_FROM_EXTRUDER 0  // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 0  // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -3.25   // Z offset: -below +above  [the nozzle]
+
+
+// Homing speeds (mm/m)
+#define HOMING_FEEDRATE_XY (120*60) //default: (50*60)
+#define HOMING_FEEDRATE_Z  (6*60) //default: (4*60)
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 10
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 8000
+#define XY_PROBE_SPEED 10000 //default: 8000
 
 // Feedrate (mm/m) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -922,15 +938,15 @@
 
 // The size of the print bed
 #define X_BED_SIZE 270 //default: 200
-#define Y_BED_SIZE 268 //default: 200
+#define Y_BED_SIZE 260 //default: 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
-#define Y_MIN_POS -2 //default: 0
+#define Y_MIN_POS 0 //default: 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 346 //default: 200
+#define Z_MAX_POS 340 //default: 200
 
 /**
  * Software Endstops
@@ -1190,10 +1206,6 @@
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
 #endif
-
-// Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (60*60) //default: (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
 
 // @section calibrate
 
@@ -1525,7 +1537,7 @@
 //
 //  Set this option if CLOCKWISE causes values to DECREASE
 //
-//#define REVERSE_ENCODER_DIRECTION
+#define REVERSE_ENCODER_DIRECTION //default: undefined
 
 //
 // This option reverses the encoder direction for navigating LCD menus.
@@ -1533,14 +1545,14 @@
 //  If CLOCKWISE normally moves DOWN this makes it go UP.
 //  If CLOCKWISE normally moves UP this makes it go DOWN.
 //
-//#define REVERSE_MENU_DIRECTION
+// #define REVERSE_MENU_DIRECTION
 
 //
 // Individual Axis Homing
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-#define INDIVIDUAL_AXIS_HOMING_MENU
+#define INDIVIDUAL_AXIS_HOMING_MENU //default: undefined
 
 //
 // SPEAKER/BUZZER
@@ -1704,7 +1716,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER //default: undefined
 
 //
 // ReprapWorld Graphical LCD
