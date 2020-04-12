@@ -128,7 +128,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_MKS_GEN_L //53
+  #define MOTHERBOARD BOARD_MKS_GEN_L //1111
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
@@ -484,9 +484,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // FLSun
-//  #define DEFAULT_Kp 36.16
-//  #define DEFAULT_Ki 3.09
-//  #define DEFAULT_Kd 105.90
+  //#define DEFAULT_Kp 36.16
+  //#define DEFAULT_Ki 3.09
+  //#define DEFAULT_Kd 105.90
 
 
   // Ultimaker
@@ -540,9 +540,9 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   // Flsun Cube 3D Bed
-//  #define DEFAULT_bedKp 578.89
-//  #define DEFAULT_bedKi 113.98
-//  #define DEFAULT_bedKd 735.04
+  //#define DEFAULT_bedKp 578.89
+  //#define DEFAULT_bedKi 113.98
+  //#define DEFAULT_bedKd 735.04
 
   #define  DEFAULT_bedKp 250 //205.40
   #define  DEFAULT_bedKi 18 //36.34
@@ -572,15 +572,15 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-//#define PREVENT_COLD_EXTRUSION
-//#define EXTRUDE_MINTEMP 170
+#define PREVENT_COLD_EXTRUSION
+#define EXTRUDE_MINTEMP 170
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 780 //default: 200
+#define EXTRUDE_MAXLENGTH 780 //default: 200 //length from head to where filament enters
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -693,7 +693,7 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE A4988 //default: undefined
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -745,14 +745,14 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT    { 100, 100, 400, 154 } //default: { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT    { 100, 100, 400, 150 } //default: { 80, 80, 4000, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 333, 300, 25, 35 } //default: { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 25, 35 } //default: { 300, 300, 5, 25 }
 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -766,7 +766,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1200, 600, 300, 10000 } //default: { 3000, 3000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 300, 10000 } //default: { 3000, 3000, 100, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -972,7 +972,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET {0, 0, -3.25} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.25} //default: { 10, 10, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1381,7 +1381,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (120*60) //default: (50*60)
-#define HOMING_FEEDRATE_Z  (6*60) //default: (4*60)
+#define HOMING_FEEDRATE_Z  (4*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1458,7 +1458,7 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS //default: undefined    // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS       //default: undefined    // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
