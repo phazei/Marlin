@@ -20,6 +20,7 @@
  *
  */
 
+
 /**
  * configuration_store.cpp
  *
