@@ -2057,128 +2057,145 @@
  */
 #if HAS_TRINAMIC_CONFIG
 
+/**
+ * FLSUN CUBE default motor: 42SHDC4047Z-23B
+ * Step angle: 1.8 degree
+ * Number of phases: 2
+ * Voltage: 3.96V
+ * Current: 0.9A
+ * Resistance: 4.4 ohm
+ * Holding torque: 0.34Nm
+ * Operating ambient temperature: -20 - 50 Deg.C
+ * Operating environment humidity: 90 percent
+ * Axis diameter: 5mm
+ */
+
+// X_CURRENT = rate_current * 8 * R_SENSE
+// 900ma * 8 * 0.11 = 704ma * 0.9safety = 634
+
+
   #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT       800        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       634        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
-    #define X_MICROSTEPS     16    // 0..256
+    #define X_MICROSTEPS     256    // 0..256
     #define X_RSENSE          0.11
     #define X_CHAIN_POS      -1    // <=0 : Not chained. 1 : MCU MOSI connected. 2 : Next in chain, ...
   #endif
 
-  #if AXIS_IS_TMC(X2)
-    #define X2_CURRENT      800
-    #define X2_CURRENT_HOME X2_CURRENT
-    #define X2_MICROSTEPS    16
-    #define X2_RSENSE         0.11
-    #define X2_CHAIN_POS     -1
-  #endif
+  // #if AXIS_IS_TMC(X2)
+  //   #define X2_CURRENT      800
+  //   #define X2_CURRENT_HOME X2_CURRENT
+  //   #define X2_MICROSTEPS    16
+  //   #define X2_RSENSE         0.11
+  //   #define X2_CHAIN_POS     -1
+  // #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT       800
+    #define Y_CURRENT       634
     #define Y_CURRENT_HOME  Y_CURRENT
-    #define Y_MICROSTEPS     16
+    #define Y_MICROSTEPS     256
     #define Y_RSENSE          0.11
     #define Y_CHAIN_POS      -1
   #endif
 
-  #if AXIS_IS_TMC(Y2)
-    #define Y2_CURRENT      800
-    #define Y2_CURRENT_HOME Y2_CURRENT
-    #define Y2_MICROSTEPS    16
-    #define Y2_RSENSE         0.11
-    #define Y2_CHAIN_POS     -1
-  #endif
+  // #if AXIS_IS_TMC(Y2)
+  //   #define Y2_CURRENT      800
+  //   #define Y2_CURRENT_HOME Y2_CURRENT
+  //   #define Y2_MICROSTEPS    16
+  //   #define Y2_RSENSE         0.11
+  //   #define Y2_CHAIN_POS     -1
+  // #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       800
+    #define Z_CURRENT       634 * 2 //dual z motors handled by single stepper
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
     #define Z_CHAIN_POS      -1
   #endif
 
-  #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT      800
-    #define Z2_CURRENT_HOME Z2_CURRENT
-    #define Z2_MICROSTEPS    16
-    #define Z2_RSENSE         0.11
-    #define Z2_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(Z3)
-    #define Z3_CURRENT      800
-    #define Z3_CURRENT_HOME Z3_CURRENT
-    #define Z3_MICROSTEPS    16
-    #define Z3_RSENSE         0.11
-    #define Z3_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(Z4)
-    #define Z4_CURRENT      800
-    #define Z4_CURRENT_HOME Z4_CURRENT
-    #define Z4_MICROSTEPS    16
-    #define Z4_RSENSE         0.11
-    #define Z4_CHAIN_POS     -1
-  #endif
+  // #if AXIS_IS_TMC(Z2)
+  //   #define Z2_CURRENT      634
+  //   #define Z2_CURRENT_HOME Z2_CURRENT
+  //   #define Z2_MICROSTEPS    16
+  //   #define Z2_RSENSE         0.11
+  //   #define Z2_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(Z3)
+  //   #define Z3_CURRENT      800
+  //   #define Z3_CURRENT_HOME Z3_CURRENT
+  //   #define Z3_MICROSTEPS    16
+  //   #define Z3_RSENSE         0.11
+  //   #define Z3_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(Z4)
+  //   #define Z4_CURRENT      800
+  //   #define Z4_CURRENT_HOME Z4_CURRENT
+  //   #define Z4_MICROSTEPS    16
+  //   #define Z4_RSENSE         0.11
+  //   #define Z4_CHAIN_POS     -1
+  // #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      800
+    #define E0_CURRENT      634
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
   #endif
 
   #if AXIS_IS_TMC(E1)
-    #define E1_CURRENT      800
+    #define E1_CURRENT      634
     #define E1_MICROSTEPS    16
     #define E1_RSENSE         0.11
     #define E1_CHAIN_POS     -1
   #endif
 
-  #if AXIS_IS_TMC(E2)
-    #define E2_CURRENT      800
-    #define E2_MICROSTEPS    16
-    #define E2_RSENSE         0.11
-    #define E2_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(E3)
-    #define E3_CURRENT      800
-    #define E3_MICROSTEPS    16
-    #define E3_RSENSE         0.11
-    #define E3_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(E4)
-    #define E4_CURRENT      800
-    #define E4_MICROSTEPS    16
-    #define E4_RSENSE         0.11
-    #define E4_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(E5)
-    #define E5_CURRENT      800
-    #define E5_MICROSTEPS    16
-    #define E5_RSENSE         0.11
-    #define E5_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(E6)
-    #define E6_CURRENT      800
-    #define E6_MICROSTEPS    16
-    #define E6_RSENSE         0.11
-    #define E6_CHAIN_POS     -1
-  #endif
-
-  #if AXIS_IS_TMC(E7)
-    #define E7_CURRENT      800
-    #define E7_MICROSTEPS    16
-    #define E7_RSENSE         0.11
-    #define E7_CHAIN_POS     -1
-  #endif
+  // #if AXIS_IS_TMC(E2)
+  //   #define E2_CURRENT      800
+  //   #define E2_MICROSTEPS    16
+  //   #define E2_RSENSE         0.11
+  //   #define E2_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(E3)
+  //   #define E3_CURRENT      800
+  //   #define E3_MICROSTEPS    16
+  //   #define E3_RSENSE         0.11
+  //   #define E3_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(E4)
+  //   #define E4_CURRENT      800
+  //   #define E4_MICROSTEPS    16
+  //   #define E4_RSENSE         0.11
+  //   #define E4_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(E5)
+  //   #define E5_CURRENT      800
+  //   #define E5_MICROSTEPS    16
+  //   #define E5_RSENSE         0.11
+  //   #define E5_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(E6)
+  //   #define E6_CURRENT      800
+  //   #define E6_MICROSTEPS    16
+  //   #define E6_RSENSE         0.11
+  //   #define E6_CHAIN_POS     -1
+  // #endif
+  //
+  // #if AXIS_IS_TMC(E7)
+  //   #define E7_CURRENT      800
+  //   #define E7_MICROSTEPS    16
+  //   #define E7_RSENSE         0.11
+  //   #define E7_CHAIN_POS     -1
+  // #endif
 
   /**
    * Override default SPI pins for TMC2130, TMC2160, TMC2660, TMC5130 and TMC5160 drivers here.
@@ -2283,7 +2300,7 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-  //#define MONITOR_DRIVER_STATUS
+  #define MONITOR_DRIVER_STATUS
 
   #if ENABLED(MONITOR_DRIVER_STATUS)
     #define CURRENT_STEP_DOWN     50  // [mA]
@@ -2340,13 +2357,13 @@
    * IMPROVE_HOMING_RELIABILITY tunes acceleration and jerk when
    * homing and adds a guard period for endstop triggering.
    */
-  //#define SENSORLESS_HOMING // StallGuard capable drivers only
+  #define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  8
+    #define X_STALL_SENSITIVITY  80 //default: 8
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY  8
+    #define Y_STALL_SENSITIVITY  80 //default: 8
     //#define Z_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130 only
     //#define IMPROVE_HOMING_RELIABILITY
