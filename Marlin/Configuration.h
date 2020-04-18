@@ -485,9 +485,9 @@
 
   // FLSun
 
-  #define DEFAULT_Kp 26.44 //31.8
-  #define DEFAULT_Ki 1.78 //2.39
-  #define DEFAULT_Kd 97.95 //105.53
+  #define DEFAULT_Kp 35.39 //28.78 //34.79 //26.44 //31.8
+  #define DEFAULT_Ki 5.14 //2.33 //2.89 //1.78 //2.39
+  #define DEFAULT_Kd 60.88 //104.73 //97.95 //105.53
 
   // Ultimaker
   // #define DEFAULT_Kp 22.2
@@ -973,8 +973,8 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.025} //default: { 10, 10, 0 }
-
+#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.175} //default: { 10, 10, 0 }
+                                         //-2.675
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 #define MIN_PROBE_EDGE 10
@@ -1491,8 +1491,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 200 //default: 180
-#define PREHEAT_1_TEMP_BED     60 //default: 70
+#define PREHEAT_1_TEMP_HOTEND 205 //default: 180
+#define PREHEAT_1_TEMP_BED     65 //default: 70
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
