@@ -746,8 +746,8 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
- //NOTE: X & Y set to 256 microsteps, Z & E0 set at 16.
-#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1600, 1600, 400, 158 } //default: { 80, 80, 4000, 500 }
+ //NOTE: X & Y & Z set to 256 microsteps, E0 set at 16.
+#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1600, 1600, 6400, 158 } //default: { 80, 80, 4000, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -849,7 +849,7 @@
 // #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN //default: defined
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -867,7 +867,6 @@
  *      - normally-open switches to 5V and D32.
  *
  */
-#define HOMING_Z_WITH_PROBE 1
 #define Z_MIN_PROBE_PIN P2_00 // Pin 32 is the RAMPS default
 
 /**
@@ -982,7 +981,7 @@
                                          //-2.675
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 10
+#define MIN_PROBE_EDGE 20
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 10000 //default: 8000
@@ -1002,8 +1001,8 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-//#define MULTIPLE_PROBING 2
-//#define EXTRA_PROBING    1
+#define MULTIPLE_PROBING 2
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1024,7 +1023,7 @@
 #define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -2.5 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -1226,9 +1225,9 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 // https://github.com/MarlinFirmware/Marlin/issues/7618#issuecomment-328297556
-#define AUTO_BED_LEVELING_UBL //default: undefined
+// #define AUTO_BED_LEVELING_UBL //default: undefined
 //#define MESH_BED_LEVELING
 
 /**
@@ -1274,7 +1273,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 5 //default: 3
+  #define GRID_MAX_POINTS_X 4 //default: 3
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1334,7 +1333,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-//#define LCD_BED_LEVELING
+#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1662,7 +1661,7 @@
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-#define DISPLAY_CHARSET_HD44780 WESTERN
+#define DISPLAY_CHARSET_HD44780 JAPANESE
 
 /**
  * Info Screen Style (0:Classic, 1:Prusa)
