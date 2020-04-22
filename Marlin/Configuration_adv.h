@@ -2110,7 +2110,7 @@
   // #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       634 * 2 //dual z motors handled by single stepper
+    #define Z_CURRENT       634 // * 2 //dual z motors handled by single stepper
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
@@ -2361,9 +2361,9 @@
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  80 //default: 8
+    #define X_STALL_SENSITIVITY  160 //default: 8
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY  80 //default: 8
+    #define Y_STALL_SENSITIVITY  120 //default: 8
     //#define Z_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130 only
     //#define IMPROVE_HOMING_RELIABILITY

@@ -573,7 +573,7 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-#define PREVENT_COLD_EXTRUSION
+// #define PREVENT_COLD_EXTRUSION //note: enable this
 #define EXTRUDE_MINTEMP 170
 
 /**
@@ -664,7 +664,7 @@
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 #define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true  //default: false // Set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING false  //default: false // Set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -747,14 +747,14 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
  //NOTE: X & Y set to 256 microsteps, Z & E0 set at 16.
-#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1600, 1600, 400, 150 } //default: { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1600, 1600, 400, 158 } //default: { 80, 80, 4000, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 25, 35 } //default: { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 1000, 1000, 100, 40 } //default: { 300, 300, 5, 25 }
 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -867,7 +867,8 @@
  *      - normally-open switches to 5V and D32.
  *
  */
-#define Z_MIN_PROBE_PIN P0_10 // Pin 32 is the RAMPS default
+#define HOMING_Z_WITH_PROBE 1
+#define Z_MIN_PROBE_PIN P2_00 // Pin 32 is the RAMPS default
 
 /**
  * Probe Type
@@ -977,7 +978,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.175} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.35} //default: { 10, 10, 0 }
                                          //-2.675
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1079,7 +1080,7 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR true //default: false
 #define INVERT_Y_DIR false //default: true
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true //default: false
 
 // @section extruder
 
