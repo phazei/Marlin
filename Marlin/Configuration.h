@@ -753,7 +753,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 1000, 1000, 100, 40 } //default: { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 5000, 5000, 1000, 40 } //default: { 300, 300, 5, 25 }
 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -976,7 +976,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.35} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {28, -11, -2.7} //default: { 10, 10, 0 }
                                          //-2.675
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1496,12 +1496,12 @@
 #define PREHEAT_1_LABEL       "PLA"
 #define PREHEAT_1_TEMP_HOTEND 205 //default: 180
 #define PREHEAT_1_TEMP_BED     65 //default: 70
-#define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
+#define PREHEAT_1_FAN_SPEED     156 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
 #define PREHEAT_2_TEMP_HOTEND 240
 #define PREHEAT_2_TEMP_BED    100 //default: 110
-#define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
+#define PREHEAT_2_FAN_SPEED     156 // Value from 0 to 255
 
 /**
  * Nozzle Park
