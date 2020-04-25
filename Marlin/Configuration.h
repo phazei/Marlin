@@ -976,11 +976,11 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET {28, -11, -3.33} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {28, -11, -2.930} //default: { 10, 10, 0 }
                                          //-2.675
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 20
+#define MIN_PROBE_EDGE 30
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000 //default: 8000
@@ -1112,12 +1112,12 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 270 //default: 200
-#define Y_BED_SIZE 260 //default: 200
+#define X_BED_SIZE 250 //default: 200
+#define Y_BED_SIZE 250 //default: 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
-#define Y_MIN_POS 0 //default: 0
+#define Y_MIN_POS -10 //default: 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1137,7 +1137,7 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
-  #define MIN_SOFTWARE_ENDSTOP_Z
+  // #define MIN_SOFTWARE_ENDSTOP_Z //default: enabled //this could prevent -z babystepping
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1224,9 +1224,9 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_BILINEAR
 // https://github.com/MarlinFirmware/Marlin/issues/7618#issuecomment-328297556
-// #define AUTO_BED_LEVELING_UBL //default: undefined
+#define AUTO_BED_LEVELING_UBL //default: undefined
 //#define MESH_BED_LEVELING
 
 /**

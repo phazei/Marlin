@@ -1,11 +1,12 @@
 
 
 M117 Clean           ; Indicate nozzle clean in progress on LCD
-M109 S200            ; Uncomment to set your own temp [run warmer to clean out nozzle]
-M107                 ; Turn layer fan off
+;M109 S200           ; Slicer app should set this  ; Uncomment to set your own temp [run warmer to clean out nozzle]
+;M107                 ; Turn layer fan off
 G21                  ; Set to metric [change to G20 if you want Imperial]
 G90                  ; Force coordinates to be absolute relative to the origin
 G28                  ; Home X/Y/Z axis
+M420 S1              ; Ensure auto-leveling is on
 G0 X0 Y1 F9000       ; Move in 1mm from edge and up [z] 0.15mm
 G0 Z0.15 F1500       ; Move in 1mm from edge and up [z] 0.15mm
 G92 E0               ; Set extruder to [0] zero
