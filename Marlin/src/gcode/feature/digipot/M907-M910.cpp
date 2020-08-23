@@ -16,13 +16,13 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
 #include "../../../inc/MarlinConfig.h"
 
-#if HAS_DIGIPOTSS || HAS_MOTOR_CURRENT_PWM || HAS_I2C_DIGIPOT || ENABLED(DAC_STEPPER_CURRENT)
+#if ANY(HAS_DIGIPOTSS, HAS_MOTOR_CURRENT_PWM, HAS_I2C_DIGIPOT, DAC_STEPPER_CURRENT)
 
 #include "../../gcode.h"
 
@@ -80,7 +80,7 @@ void GcodeSuite::M907() {
   #endif
 }
 
-#if HAS_DIGIPOTSS || ENABLED(DAC_STEPPER_CURRENT)
+#if EITHER(HAS_DIGIPOTSS, DAC_STEPPER_CURRENT)
 
   /**
    * M908: Control digital trimpot directly (M908 P<pin> S<current>)

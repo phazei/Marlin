@@ -16,21 +16,13 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
 
 #ifndef BOARD_INFO_NAME
-  #define BOARD_INFO_NAME "BIGTREE SKR 1.4"
-#endif
-
-//
-// EEPROM
-//
-#if NONE(FLASH_EEPROM_EMULATION, SDCARD_EEPROM_EMULATION)
-  #define FLASH_EEPROM_EMULATION
-  //#define SDCARD_EEPROM_EMULATION
+  #define BOARD_INFO_NAME "BTT SKR V1.4"
 #endif
 
 //
@@ -59,7 +51,7 @@
 //
 // Limit Switches
 //
-#if X_STALL_SENSITIVITY
+#ifdef X_STALL_SENSITIVITY
   #define X_STOP_PIN                  X_DIAG_PIN
   #if X_HOME_DIR < 0
     #define X_MAX_PIN                      P1_26  // E0DET
@@ -70,7 +62,7 @@
   #define X_STOP_PIN                       P1_29  // X-STOP
 #endif
 
-#if Y_STALL_SENSITIVITY
+#ifdef Y_STALL_SENSITIVITY
   #define Y_STOP_PIN                  Y_DIAG_PIN
   #if Y_HOME_DIR < 0
     #define Y_MAX_PIN                      P1_25  // E1DET
@@ -81,7 +73,7 @@
   #define Y_STOP_PIN                       P1_28  // Y-STOP
 #endif
 
-#if Z_STALL_SENSITIVITY
+#ifdef Z_STALL_SENSITIVITY
   #define Z_STOP_PIN                  Z_DIAG_PIN
   #if Z_HOME_DIR < 0
     #define Z_MAX_PIN                      P1_00  // PWRDET
@@ -218,7 +210,7 @@
   #define Z2_SERIAL_RX_PIN                 P1_01
 
   // Reduce baud rate to improve software serial reliability
-  #define TMC_BAUD_RATE 19200
+  #define TMC_BAUD_RATE                    19200
 #endif
 
 //
@@ -260,7 +252,32 @@
     #define LCD_PINS_ENABLE                P1_23
     #define LCD_PINS_D4                    P1_21
 
+  #elif ENABLED(ENDER2_STOCKDISPLAY)
+
+    /** Creality Ender-2 display pinout
+     *                   _____
+     *               5V | 1 2 | GND
+     *      (MOSI) 1.23 | 3 4 | 1.22 (LCD_RS)
+     *    (LCD_A0) 1.21 | 5 6 | 1.20 (BTN_EN2)
+     *       RESET 1.19 | 7 8 | 1.18 (BTN_EN1)
+     *   (BTN_ENC) 0.28 | 9 10| 1.30  (SCK)
+     *                   -----
+     *                    EXP1
+     */
+
+    #define BTN_EN1                        P1_18
+    #define BTN_EN2                        P1_20
+    #define BTN_ENC                        P0_28
+
+    #define DOGLCD_CS                      P1_22
+    #define DOGLCD_A0                      P1_21
+    #define DOGLCD_SCK                     P1_30
+    #define DOGLCD_MOSI                    P1_23
+    #define FORCE_SOFT_SPI
+    #define LCD_BACKLIGHT_PIN              -1
+
   #else
+
     #define BTN_ENC                        P0_28  // (58) open-drain
     #define LCD_PINS_RS                    P1_19
 
@@ -321,7 +338,7 @@
 
     #endif // !FYSETC_MINI_12864
 
-  #endif
+  #endif // HAS_GRAPHICAL_LCD
 
   // Alter timing for graphical display
   #if HAS_GRAPHICAL_LCD
@@ -332,6 +349,10 @@
 
 
 #endif // HAS_SPI_LCD
+
+#if HAS_ADC_BUTTONS
+  #error "ADC BUTTONS do not work unmodifed on SKR 1.4, The ADC ports cannot take more than 3.3v."
+#endif
 
 //
 // Neopixel LED

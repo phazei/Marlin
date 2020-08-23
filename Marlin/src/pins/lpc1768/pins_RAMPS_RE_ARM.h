@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -41,12 +41,6 @@
 #endif
 
 #define BOARD_INFO_NAME "Re-ARM RAMPS 1.4"
-
-//
-// EEPROM
-//
-#define FLASH_EEPROM_EMULATION
-//#define SDCARD_EEPROM_EMULATION
 
 //
 // Servos
@@ -164,7 +158,7 @@
   #endif
 
   // Reduce baud rate to improve software serial reliability
-  #define TMC_BAUD_RATE 19200
+  #define TMC_BAUD_RATE                    19200
 #endif
 
 //
@@ -177,7 +171,7 @@
 #define TEMP_2_PIN                      P0_26_A3  // A3 - (63) - J5-3 & AUX-2
 #define TEMP_3_PIN                      P1_30_A4  // A4 - (37) - BUZZER_PIN
 //#define TEMP_4_PIN                    P1_31_A5  // A5 - (49) - SD_DETECT_PIN
-//#define ??                  P0_03_A6   // A6 - ( 0)  - RXD0 - J4-4 & AUX-1
+//#define ??                  P0_03_A6            // A6 - ( 0)  - RXD0 - J4-4 & AUX-1
 #define FILWIDTH_PIN                    P0_02_A7  // A7 - ( 1)  - TXD0 - J4-5 & AUX-1
 
 //
@@ -299,7 +293,7 @@
  * All controllers can use J3 and J5 on the Re-ARM board. Custom cabling will be required.
  *
  * - https://github.com/wolfmanjm/universal-panel-adapter
- * - http://panucattdevices.freshdesk.com/support/solutions/articles/1000243195-lcd-display-installation
+ * - https://panucattdevices.freshdesk.com/support/solutions/articles/1000243195-lcd-display-installation
  */
 
 /**
@@ -353,7 +347,7 @@
   #define SD_DETECT_PIN                    P1_31  // (49) J3-1 & AUX-3 (NOT 5V tolerant)
   #define KILL_PIN                         P1_22  // (41) J5-4 & AUX-4
   #define LCD_PINS_RS                      P0_16  // (16) J3-7 & AUX-4
-  #define LCD_SDSS                         P0_16  // (16) J3-7 & AUX-4
+  #define LCD_SDSS                         P1_23  // (53) J3-5 & AUX-3
 
   #if ENABLED(NEWPANEL)
     #if ENABLED(REPRAPWORLD_KEYPAD)
