@@ -416,7 +416,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -489,11 +489,21 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // FLSun
+  // FLSun - e3D V6 Hotend - w/silicone cover
+  // M303 E0 S200 C8
+  #define DEFAULT_Kp 23.14
+  #define DEFAULT_Ki 1.77
+  #define DEFAULT_Kd 75.77
 
-  #define DEFAULT_Kp 35.39 //28.78 //34.79 //26.44 //31.8
-  #define DEFAULT_Ki 5.14 //2.33 //2.89 //1.78 //2.39
-  #define DEFAULT_Kd 60.88 //104.73 //97.95 //105.53
+  // FLSun - e3D V6 Hotend
+  // #define DEFAULT_Kp 21.81
+  // #define DEFAULT_Ki 1.62
+  // #define DEFAULT_Kd 73.24
+
+  // FLSun - stock J-Head V5
+  // #define DEFAULT_Kp 35.39 //28.78 //34.79 //26.44 //31.8
+  // #define DEFAULT_Ki 5.14 //2.33 //2.89 //1.78 //2.39
+  // #define DEFAULT_Kd 60.88 //104.73 //97.95 //105.53
 
   // Ultimaker
   // #define DEFAULT_Kp 22.2
@@ -539,16 +549,28 @@
  * When set to any value below 255, enables a form of PWM to the bed that acts like a divider
  * so don't use it unless you are OK with PWM on your bed. (See the comment on enabling PIDTEMPBED)
  */
-#define MAX_BED_POWER 180 // limits duty cycle to bed; 255=full current
+#define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
 
 #if ENABLED(PIDTEMPBED)
   //#define MIN_BED_POWER 0
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
-  // Flsun Cube 3D Bed
-  #define DEFAULT_bedKp 139.17 //111.78 //289.90
-  #define DEFAULT_bedKi 27.34 //22.01 //36.11
-  #define DEFAULT_bedKd 472.26 //378.49 //581.87
+  // Flsun Cube 3D - Magnet sheet + spring steel + PEI
+  // M303 E-1 S60 C8
+  #define DEFAULT_bedKp 150.22
+  #define DEFAULT_bedKi 30.01
+  #define DEFAULT_bedKd 501.22
+
+  // Flsun Cube 3D - Magnet sheet + spring steel
+  // M303 E-1 S60 C8
+  // #define DEFAULT_bedKp 125.72
+  // #define DEFAULT_bedKi 21.20
+  // #define DEFAULT_bedKd 497.11
+
+  // Flsun Cube 3D Stock Bed
+  // #define DEFAULT_bedKp 139.17 //111.78 //289.90
+  // #define DEFAULT_bedKi 27.34 //22.01 //36.11
+  // #define DEFAULT_bedKd 472.26 //378.49 //581.87
 
   // #define  DEFAULT_bedKp 250 //205.40
   // #define  DEFAULT_bedKi 18 //36.34
@@ -586,7 +608,7 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-// #define PREVENT_COLD_EXTRUSION //note: enable this
+#define PREVENT_COLD_EXTRUSION //note: enable this
 #define EXTRUDE_MINTEMP 170
 
 /**
@@ -625,7 +647,7 @@
 
 // Uncomment one of these options to enable CoreXY, CoreXZ, or CoreYZ kinematics
 // either in the usual order or reversed
-//#define COREXY
+#define COREXY
 //#define COREXZ
 //#define COREYZ
 //#define COREYX
@@ -770,7 +792,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 50, 40 } //default: { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 50, 40 } //default: { 300, 300, 5, 25 }
 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -885,7 +907,8 @@
  *      - normally-open switches to 5V and D32.
  *
  */
-#define Z_MIN_PROBE_PIN P2_00 // Pin 32 is the RAMPS default
+
+//#define Z_MIN_PROBE_PIN P0_10 // Pin 32 is the RAMPS default
 
 /**
  * Probe Type
@@ -906,7 +929,7 @@
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
-#define FIX_MOUNTED_PROBE //default: undefined
+//#define FIX_MOUNTED_PROBE //default: undefined
 
 /**
  * Use the nozzle as the probe, as with a conductive
@@ -923,7 +946,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -1010,14 +1033,14 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET {28, -11, -2.930} //default: { 10, 10, 0 }
-                                         //-2.675
+#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.40} //default: { 10, 10, 0 }
+
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 #define PROBING_MARGIN 30
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_SPEED 8000 //default: (133*60)
+#define XY_PROBE_SPEED 6000 //default: (133*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -1056,14 +1079,20 @@
 #define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -5 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -1 //default: -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
 #define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-#define Z_MIN_PROBE_REPEATABILITY_TEST
+// #define Z_MIN_PROBE_REPEATABILITY_TEST
+// Prev M48 Results:
+// READ: Mean: 0.018578 Min: 0.015 Max: 0.021 Range: 0.005
+// READ: Standard Deviation: 0.001737
+// READ: 
+// READ: X:150.00 Y:150.00 Z:10.15 E:0.00 Count A:480000 B:0 Z:64960
+
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -1110,7 +1139,7 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true //default: false
+#define INVERT_X_DIR false //default: false
 #define INVERT_Y_DIR false //default: true
 #define INVERT_Z_DIR true //default: false
 
@@ -1146,16 +1175,16 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 250 //default: 200
-#define Y_BED_SIZE 250 //default: 200
+#define X_BED_SIZE 300 //default: 200
+#define Y_BED_SIZE 300  //default: 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
-#define Y_MIN_POS -10 //default: 0
+#define X_MIN_POS -15
+#define Y_MIN_POS -6 //default: 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 340 //default: 200
+#define Y_MAX_POS Y_BED_SIZE + 40
+#define Z_MAX_POS 400 //default: 200
 
 /**
  * Software Endstops
@@ -1171,7 +1200,7 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
-  // #define MIN_SOFTWARE_ENDSTOP_Z //default: enabled //this could prevent -z babystepping
+  #define MIN_SOFTWARE_ENDSTOP_Z //default: enabled //this could prevent -z babystepping
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1528,8 +1557,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 205 //default: 180
-#define PREHEAT_1_TEMP_BED     65 //default: 70
+#define PREHEAT_1_TEMP_HOTEND 200 //default: 180
+#define PREHEAT_1_TEMP_BED     60 //default: 70
 #define PREHEAT_1_FAN_SPEED     156 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"

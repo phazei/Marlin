@@ -35,9 +35,7 @@
 //
 // Servos
 //
-#if ENABLED(BLTOUCH)
-  #define SERVO0_PIN                         P2_00
-#endif
+#define SERVO0_PIN                         P2_00
 
 //
 // TMC StallGuard DIAG pins

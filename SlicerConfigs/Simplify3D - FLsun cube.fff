@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<profile name="FLsun cube" version="2020-04-23 01:01:17" app="S3D-Software 4.0.1">
+<profile name="FLSun Cube" version="2020-08-26 17:04:21" app="S3D-Software 4.1.2">
   <baseProfile>Creality CR-10</baseProfile>
   <printMaterial>PLA</printMaterial>
   <printQuality>Medium</printQuality>
@@ -89,8 +89,6 @@
   <temperatureController name="Primary Extruder">
     <temperatureNumber>0</temperatureNumber>
     <isHeatedBed>0</isHeatedBed>
-    <relayBetweenLayers>0</relayBetweenLayers>
-    <relayBetweenLoops>0</relayBetweenLoops>
     <stabilizeAtStartup>1</stabilizeAtStartup>
     <setpoint layer="1" temperature="210"/>
     <setpoint layer="3" temperature="205"/>
@@ -98,15 +96,13 @@
   <temperatureController name="Heated Bed">
     <temperatureNumber>0</temperatureNumber>
     <isHeatedBed>1</isHeatedBed>
-    <relayBetweenLayers>0</relayBetweenLayers>
-    <relayBetweenLoops>0</relayBetweenLoops>
     <stabilizeAtStartup>1</stabilizeAtStartup>
     <setpoint layer="1" temperature="65"/>
     <setpoint layer="3" temperature="60"/>
   </temperatureController>
   <fanSpeed>
-    <setpoint layer="1" speed="40"/>
-    <setpoint layer="2" speed="60"/>
+    <setpoint layer="1" speed="60"/>
+    <setpoint layer="2" speed="100"/>
   </fanSpeed>
   <blipFanToFullPower>0</blipFanToFullPower>
   <adjustSpeedForCooling>1</adjustSpeedForCooling>
@@ -129,9 +125,9 @@
   <gcodeZoffset>0</gcodeZoffset>
   <overrideMachineDefinition>1</overrideMachineDefinition>
   <machineTypeOverride>0</machineTypeOverride>
-  <strokeXoverride>270</strokeXoverride>
-  <strokeYoverride>260</strokeYoverride>
-  <strokeZoverride>340</strokeZoverride>
+  <strokeXoverride>300</strokeXoverride>
+  <strokeYoverride>300</strokeYoverride>
+  <strokeZoverride>400</strokeZoverride>
   <originOffsetXoverride>0</originOffsetXoverride>
   <originOffsetYoverride>0</originOffsetYoverride>
   <originOffsetZoverride>0</originOffsetZoverride>
@@ -139,20 +135,20 @@
   <homeYdirOverride>-1</homeYdirOverride>
   <homeZdirOverride>-1</homeZdirOverride>
   <flipXoverride>1</flipXoverride>
-  <flipYoverride>-1</flipYoverride>
+  <flipYoverride>1</flipYoverride>
   <flipZoverride>1</flipZoverride>
   <toolheadOffsets>0,0|0,0|0,0|0,0|0,0|0,0</toolheadOffsets>
   <overrideFirmwareConfiguration>1</overrideFirmwareConfiguration>
   <firmwareTypeOverride>RepRap (Marlin/Repetier/Sprinter)</firmwareTypeOverride>
   <GPXconfigOverride>r2</GPXconfigOverride>
-  <baudRateOverride>250000</baudRateOverride>
+  <baudRateOverride>115200</baudRateOverride>
   <overridePrinterModels>1</overridePrinterModels>
   <printerModelsOverride></printerModelsOverride>
-  <startingGcode>M117 Clean           ; Indicate nozzle clean in progress on LCD,M109 S200            ; Uncomment to set your own temp [run warmer to clean out nozzle],M107                 ; Turn layer fan off,G21                  ; Set to metric [change to G20 if you want Imperial],G90                  ; Force coordinates to be absolute relative to the origin,G28                  ; Home X/Y/Z axis,G0 X0 Y1 F9000       ; Move in 1mm from edge and up [z] 0.15mm,G0 Z0.15 F1500       ; Move in 1mm from edge and up [z] 0.15mm,G92 E0               ; Set extruder to [0] zero,G1 X190 E65 F500     ; Extrude 65mm filiment along X axis 190mm long to prime and clean the nozzle,G92 E0               ; Reset extruder to [0] zero end of cleaning run,G1 E-3 F500          ; Retract filiment by 3 mm to reduce string effect,G1 Z15 F1500         ; Move over and rise to safe Z height,G1 X190 Y3 F9000     ; Move over and rise to safe Z height,G1 X0 Y3 Z15 F9000   ; Move back to front of bed at safe Z height to shear strings,;,; Ensure extruder is not reset by other code or it will be 3mm short [see next line also],;G1 E3 F500          ; Uncomment if you believe exruder will be reset,; Recommend turning off SKIRT in the slicer to avoid strings pulled into first layer,; Begin printing with sliced GCode after here,</startingGcode>
+  <startingGcode>M117 Clean           ; Indicate nozzle clean in progress on LCD,M109 S200            ; Uncomment to set your own temp [run warmer to clean out nozzle],M107                 ; Turn layer fan off,G21                  ; Set to metric [change to G20 if you want Imperial],G90                  ; Force coordinates to be absolute relative to the origin,G28                  ; Home X/Y/Z axis,G0 X0 Y1 F6000       ; Move in 1mm from edge and up [z] 0.15mm,G0 Z0.15 F1500       ; Move in 1mm from edge and up [z] 0.15mm,G92 E0               ; Set extruder to [0] zero,G1 X190 E65 F500     ; Extrude 65mm filiment along X axis 190mm long to prime and clean the nozzle,G92 E0               ; Reset extruder to [0] zero end of cleaning run,G1 E-3 F500          ; Retract filiment by 3 mm to reduce string effect,G1 Z15 F1500         ; Move over and rise to safe Z height,G1 X190 Y3 F6000     ; Move over and rise to safe Z height,G1 X0 Y3 Z15 F6000   ; Move back to front of bed at safe Z height to shear strings,;,; Ensure extruder is not reset by other code or it will be 3mm short [see next line also],;G1 E3 F500          ; Uncomment if you believe exruder will be reset,; Recommend turning off SKIRT in the slicer to avoid strings pulled into first layer,; Begin printing with sliced GCode after here,</startingGcode>
   <layerChangeGcode></layerChangeGcode>
   <retractionGcode></retractionGcode>
   <toolChangeGcode></toolChangeGcode>
-  <endingGcode>M104 S0 ;extruder heater off,M140 S0 ;heated bed heater off (if you have it),,G91 ;relative positioning,,G1 E-1 F300  ;retract the filament a bit before lifting the nozzle, to release some of the pressure,G1 Z+5 F1500,G1 E-5 X-20 Y-20 F9000 ;move Z up a bit and retract filament even more,,G90 ;absolute positioning,G1 X0 Y0,M84 ;steppers off,</endingGcode>
+  <endingGcode>M104 S0 ;extruder heater off,M140 S0 ;heated bed heater off (if you have it),,G91 ;relative positioning,,G1 E-1 F300  ;retract the filament a bit before lifting the nozzle, to release some of the pressure,G1 Z+5 F1500,G1 E-5 X-20 Y-20 F6000 ;move Z up a bit and retract filament even more,,G90 ;absolute positioning,G1 X0 Y0,M84 ;steppers off,</endingGcode>
   <exportFileFormat>gcode</exportFileFormat>
   <celebration>0</celebration>
   <celebrationSong>Random Song</celebrationSong>
@@ -204,8 +200,6 @@
     <temperatureController name="Primary Extruder">
       <temperatureNumber>0</temperatureNumber>
       <isHeatedBed>0</isHeatedBed>
-      <relayBetweenLayers>0</relayBetweenLayers>
-      <relayBetweenLoops>0</relayBetweenLoops>
       <stabilizeAtStartup>1</stabilizeAtStartup>
       <setpoint layer="1" temperature="210"/>
       <setpoint layer="3" temperature="205"/>
@@ -213,16 +207,14 @@
     <temperatureController name="Heated Bed">
       <temperatureNumber>0</temperatureNumber>
       <isHeatedBed>1</isHeatedBed>
-      <relayBetweenLayers>0</relayBetweenLayers>
-      <relayBetweenLoops>0</relayBetweenLoops>
       <stabilizeAtStartup>1</stabilizeAtStartup>
       <setpoint layer="1" temperature="65"/>
       <setpoint layer="3" temperature="60"/>
     </temperatureController>
     <globalExtrusionMultiplier>0.97</globalExtrusionMultiplier>
     <fanSpeed>
-      <setpoint layer="1" speed="40"/>
-      <setpoint layer="2" speed="60"/>
+      <setpoint layer="1" speed="60"/>
+      <setpoint layer="2" speed="100"/>
     </fanSpeed>
   </autoConfigureMaterial>
   <autoConfigureMaterial name="ABS">
