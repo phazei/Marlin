@@ -823,7 +823,7 @@
  */
 #define DEFAULT_ACCELERATION          3000  // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000  // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1600  //default: 1000 // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   1000  //default: 1000 // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -2034,10 +2034,6 @@
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
 #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER //default: undefined
-
-#define BOARD_ST7920_DELAY_1 DELAY_NS(96)
-#define BOARD_ST7920_DELAY_2 DELAY_NS(48)
-#define BOARD_ST7920_DELAY_3 DELAY_NS(600)
 
 //
 // ReprapWorld Graphical LCD
