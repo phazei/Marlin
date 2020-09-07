@@ -785,7 +785,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
  //NOTE: X & Y & Z set to 256 microsteps, E0 set at 16.
-#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1600, 1600, 6400, 158 } //default: { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1280, 1280, 6400, 156.5 } //default: { 80, 80, 4000, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -837,7 +837,7 @@
 #if ENABLED(CLASSIC_JERK)
   #define DEFAULT_XJERK 10.0
   #define DEFAULT_YJERK 10.0
-  #define DEFAULT_ZJERK  0.3
+  #define DEFAULT_ZJERK  0.4
 
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
@@ -1033,7 +1033,9 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.40} //default: { 10, 10, 0 }
+
+//z probe offset w/200deg nozzle & 60deg bed
+#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.35} //default: { 10, 10, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1179,7 +1181,7 @@
 #define Y_BED_SIZE 300  //default: 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -15
+#define X_MIN_POS -10
 #define Y_MIN_POS -6 //default: 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
@@ -1448,7 +1450,7 @@
 
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (6*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
