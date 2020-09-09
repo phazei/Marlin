@@ -616,7 +616,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 780 //default: 200 //length from head to where filament enters
+#define EXTRUDE_MAXLENGTH 740 //default: 200 //length from head to where filament enters
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -792,6 +792,11 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+
+//max extrusion rate: F350 => 5.8mm/s
+// 0.4mm layer height / 0.4mm width = max XY feedrate: 87mm/s
+// 0.2mm layer height / 0.4mm width = max XY feedrate: 175mm/s
+// 0.1mm layer height / 0.4mm width = max XY feedrate: 350mm/s
 #define DEFAULT_MAX_FEEDRATE          { 300, 300, 50, 40 } //default: { 300, 300, 5, 25 }
 
 
@@ -857,7 +862,7 @@
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.06 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
                                       // for small segments (< 1mm) with large junction angles (> 135°).
 #endif
@@ -1035,7 +1040,7 @@
  */
 
 //z probe offset w/200deg nozzle & 60deg bed
-#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.35} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.375} //default: { 10, 10, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1559,7 +1564,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 200 //default: 180
+#define PREHEAT_1_TEMP_HOTEND 205 //default: 180
 #define PREHEAT_1_TEMP_BED     60 //default: 70
 #define PREHEAT_1_FAN_SPEED     156 // Value from 0 to 255
 
