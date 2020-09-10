@@ -162,8 +162,8 @@
  * THERMAL_PROTECTION_HYSTERESIS and/or THERMAL_PROTECTION_PERIOD
  */
 #if ENABLED(THERMAL_PROTECTION_HOTENDS)
-  #define THERMAL_PROTECTION_PERIOD 60        // Seconds
-  #define THERMAL_PROTECTION_HYSTERESIS 5     // Degrees Celsius
+  #define THERMAL_PROTECTION_PERIOD 60        // default: 40 // Seconds
+  #define THERMAL_PROTECTION_HYSTERESIS 5     // default: 4  // Degrees Celsius
 
   //#define ADAPTIVE_FAN_SLOWING              // Slow part cooling fan if temperature drops
   #if BOTH(ADAPTIVE_FAN_SLOWING, PIDTEMP)
@@ -627,10 +627,10 @@
  * the position of the toolhead relative to the workspace.
  */
 
-#define SENSORLESS_BACKOFF_MM  { 3, 3 }     // (mm) Backoff from endstops before sensorless homing
+#define SENSORLESS_BACKOFF_MM  { 3, 3 }       // default: {2,2} // (mm) Backoff from endstops before sensorless homing
 
 #define HOMING_BUMP_MM      { 5, 5, 2 }       // (mm) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 3, 3, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_DIVISOR { 3, 3, 4 }       // default: {2,2,4} // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
 
@@ -1160,7 +1160,7 @@
    * an option on the LCD screen to continue the print from the last-known
    * point in the file.
    */
-  #define POWER_LOSS_RECOVERY
+  //#define POWER_LOSS_RECOVERY
   #if ENABLED(POWER_LOSS_RECOVERY)
     #define PLR_ENABLED_DEFAULT   true //default: false // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
     //#define BACKUP_POWER_SUPPLY       // Backup power / UPS to move the steppers on power loss
@@ -1303,7 +1303,7 @@
    *
    * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
    */
-  #define SDCARD_CONNECTION ONBOARD
+  #define SDCARD_CONNECTION ONBOARD //default: undefined
 
 #endif // SDSUPPORT
 
@@ -1579,7 +1579,7 @@
   #define BABYSTEP_MULTIPLICATOR_Z  32      //default: 1 (steps or mm) Steps or millimeter distance for each Z babystep
   //#define BABYSTEP_MULTIPLICATOR_XY 32      //default: 1 (steps or mm) Steps or millimeter distance for each XY babystep
 
-  #define DOUBLECLICK_FOR_Z_BABYSTEPPING    //default: undefined // Double-click on the Status Screen for Z Babystepping.
+  //#define DOUBLECLICK_FOR_Z_BABYSTEPPING  // Double-click on the Status Screen for Z Babystepping.
   #if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
     #define DOUBLECLICK_MAX_INTERVAL 1250   // Maximum interval between clicks, in milliseconds.
                                             // Note: Extra time may be added to mitigate controller latency.
@@ -1619,9 +1619,9 @@
 #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
-  #define LIN_ADVANCE_K 0.90    // Unit: mm compression per 1mm/s extruder speed
+  #define LIN_ADVANCE_K 0.90    //default: 0.22 // Unit: mm compression per 1mm/s extruder speed
   //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
-  #define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
+  #define EXPERIMENTAL_SCURVE   //default: undefined // Enable this option to permit S-Curve Acceleration
 #endif
 
 // @section leveling
@@ -2247,7 +2247,7 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT       680        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       900        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     256    // 0..256
     #define X_RSENSE          0.11
@@ -2263,7 +2263,7 @@
   // #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT       680
+    #define Y_CURRENT       900
     #define Y_CURRENT_HOME  Y_CURRENT
     #define Y_MICROSTEPS     256
     #define Y_RSENSE          0.11
@@ -2391,7 +2391,7 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  #define TMC_USE_SW_SPI
+  //#define TMC_USE_SW_SPI
   //#define TMC_SW_MOSI       -1
   //#define TMC_SW_MISO       -1
   //#define TMC_SW_SCK        -1
@@ -2470,7 +2470,7 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-//  #define MONITOR_DRIVER_STATUS
+  //#define MONITOR_DRIVER_STATUS
 
   #if ENABLED(MONITOR_DRIVER_STATUS)
     #define CURRENT_STEP_DOWN     50  // [mA]
@@ -2485,17 +2485,17 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  // #define HYBRID_THRESHOLD
+  #define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     100  // [mm/s]
+  #define X_HYBRID_THRESHOLD     0  // [mm/s]
   // #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     100
+  #define Y_HYBRID_THRESHOLD     0
   // #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD     100
+  #define Z_HYBRID_THRESHOLD     0
   // #define Z2_HYBRID_THRESHOLD      3
   // #define Z3_HYBRID_THRESHOLD      3
   // #define Z4_HYBRID_THRESHOLD      3
-  #define E0_HYBRID_THRESHOLD    100
+  #define E0_HYBRID_THRESHOLD    0
   // #define E1_HYBRID_THRESHOLD     30
   // #define E2_HYBRID_THRESHOLD     30
   // #define E3_HYBRID_THRESHOLD     30

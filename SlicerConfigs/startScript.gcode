@@ -5,6 +5,8 @@ G21                  ; Set to metric [change to G20 if you want Imperial]
 G90                  ; Force coordinates to be absolute relative to the origin
 G28                  ; Home X/Y/Z axis
 M420 S1              ; Ensure auto-leveling is on
+G29 L0               ; Load the 0 Mesh
+G29 J                ; 3-Point Tilt Probe
 G0 X0 Y1 F6000       ; Move in 1mm from edge and up [z] 0.15mm
 G0 Z0.15 F1500       ; Move in 1mm from edge and up [z] 0.15mm
 G92 E0               ; Set extruder to [0] zero
