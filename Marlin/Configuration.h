@@ -489,11 +489,11 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // FLSun - e3D V6 Hotend - w/silicone cover
+  // FLSun - e3D V6 Hotend - w/silicone cover + part fan
   // M303 E0 S200 C8
-  #define DEFAULT_Kp 23.14
-  #define DEFAULT_Ki 1.77
-  #define DEFAULT_Kd 75.77
+  #define DEFAULT_Kp 23.25
+  #define DEFAULT_Ki 1.79
+  #define DEFAULT_Kd 75.60
 
   // FLSun - e3D V6 Hotend
   // #define DEFAULT_Kp 21.81
@@ -786,7 +786,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
  //NOTE: X & Y & Z set to 256 microsteps, E0 set at 16.
-#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1280, 1280, 6400, 156.5 } //default: { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT    { 1280, 1280, 6400, 139 } //default: { 80, 80, 4000, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
