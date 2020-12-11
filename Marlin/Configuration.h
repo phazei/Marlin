@@ -493,11 +493,17 @@
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
 
+      // FLSun - new carriage design - e3D V6 Hotend - w/silicone cover + part fan
+      // M303 E0 S200 C8
+      #define DEFAULT_Kp 22.01
+      #define DEFAULT_Ki  1.78
+      #define DEFAULT_Kd 68.11
+    
       // FLSun - e3D V6 Hotend - w/silicone cover + part fan
       // M303 E0 S200 C8
-      #define DEFAULT_Kp 23.25
-      #define DEFAULT_Ki  1.79
-      #define DEFAULT_Kd 75.60
+      // #define DEFAULT_Kp 23.25
+      // #define DEFAULT_Ki  1.79
+      // #define DEFAULT_Kd 75.60
     
       // FLSun - e3D V6 Hotend
       // #define DEFAULT_Kp 21.81
@@ -670,10 +676,10 @@
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
 #define USE_XMIN_PLUG
-#define USE_YMIN_PLUG
+// #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
 //#define USE_XMAX_PLUG
-//#define USE_YMAX_PLUG
+#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
 // Enable pullup for all endstops to prevent a floating state
@@ -1057,7 +1063,7 @@
  */
 
 //z probe offset w/200deg nozzle & 60deg bed
-#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.400} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {34.45, 0, -1.615} //default: { 10, 10, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1193,21 +1199,21 @@
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
 #define X_HOME_DIR -1
-#define Y_HOME_DIR -1
+#define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 280 //default: 200
-#define Y_BED_SIZE 300  //default: 200
+#define X_BED_SIZE 300 //default: 200
+#define Y_BED_SIZE 280  //default: 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -10 //default: 0
-#define Y_MIN_POS -6 //default: 0
+#define X_MIN_POS -20 //default: 0
+#define Y_MIN_POS -60 //default: 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE + 40
+#define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 400 //default: 200
 
 /**
