@@ -2279,7 +2279,7 @@
   // #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       720 // * 2 //dual z motors handled by single stepper
+    #define Z_CURRENT       900 // * 2 //dual z motors handled by single stepper
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     256
     #define Z_RSENSE          0.11

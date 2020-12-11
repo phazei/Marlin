@@ -1041,11 +1041,11 @@
  */
 
 //z probe offset w/200deg nozzle & 60deg bed
-#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.375} //default: { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET {0, -48.5, -0.400} //default: { 10, 10, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 30
+#define PROBING_MARGIN 5
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_SPEED 6000 //default: (133*60)
@@ -1066,7 +1066,7 @@
  * A total of 3 or more adds more slow probes, taking the average.
  */
 #define MULTIPLE_PROBING 2
-#define EXTRA_PROBING    1
+#define EXTRA_PROBING    0
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1183,7 +1183,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 300 //default: 200
+#define X_BED_SIZE 280 //default: 200
 #define Y_BED_SIZE 300  //default: 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
@@ -1335,7 +1335,7 @@
     #define MESH_TEST_HOTEND_TEMP  205    // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
     #define MESH_TEST_BED_TEMP      60    // (°C) Default bed temperature for the G26 Mesh Validation Tool.
     #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for XY Moves for the G26 Mesh Validation Tool.
-    #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.
+    #define G26_RETRACT_MULTIPLIER   7.0  // G26 Q (retraction) used by default between mesh test elements.
   #endif
 
 #endif
@@ -1375,7 +1375,7 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 10              // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
