@@ -39,7 +39,7 @@
  *   GNU General Public License for more details.                           *
  *                                                                          *
  *   To view a copy of the GNU General Public License, go to the following  *
- *   location: <https://www.gnu.org/licenses/>.                              *
+ *   location: <https://www.gnu.org/licenses/>.                             *
  ****************************************************************************/
 
 #include "../../inc/MarlinConfig.h"
@@ -140,10 +140,16 @@ namespace ExtUI {
       bed_mesh_t& getMeshArray();
       float getMeshPoint(const xy_uint8_t &pos);
       void setMeshPoint(const xy_uint8_t &pos, const float zval);
+      void onMeshLevelingStart();
       void onMeshUpdate(const int8_t xpos, const int8_t ypos, const float zval);
       inline void onMeshUpdate(const xy_int8_t &pos, const float zval) { onMeshUpdate(pos.x, pos.y, zval); }
 
-      typedef enum : unsigned char { PROBE_START, PROBE_FINISH } probe_state_t;
+      typedef enum : unsigned char {
+        MESH_START,    // Prior to start of probe
+        MESH_FINISH,   // Following probe of all points
+        PROBE_START,   // Beginning probe of grid location
+        PROBE_FINISH   // Finished probe of grid location
+      } probe_state_t;
       void onMeshUpdate(const int8_t xpos, const int8_t ypos, probe_state_t state);
       inline void onMeshUpdate(const xy_int8_t &pos, probe_state_t state) { onMeshUpdate(pos.x, pos.y, state); }
     #endif
@@ -297,6 +303,7 @@ namespace ExtUI {
   bool isPrintingFromMediaPaused();
   bool isPrintingFromMedia();
   bool isPrinting();
+  bool isPrintingPaused();
 
   void printFile(const char *filename);
   void stopPrint();
@@ -338,11 +345,16 @@ namespace ExtUI {
   void onPrintTimerStarted();
   void onPrintTimerPaused();
   void onPrintTimerStopped();
+  void onPrintFinished();
   void onFilamentRunout(const extruder_t extruder);
   void onUserConfirmRequired(const char * const msg);
   void onUserConfirmRequired_P(PGM_P const pstr);
   void onStatusChanged(const char * const msg);
   void onStatusChanged_P(PGM_P const pstr);
+  void onHomingStart();
+  void onHomingComplete();
+  void onSteppersDisabled();
+  void onSteppersEnabled();
   void onFactoryReset();
   void onStoreSettings(char *);
   void onLoadSettings(const char *);
@@ -370,7 +382,6 @@ namespace ExtUI {
  *   constexpr float increment = 10;
  *
  *   UI_INCREMENT(TargetTemp_celsius, E0)
- *
  */
 #define UI_INCREMENT_BY(method, inc, ...) ExtUI::set ## method(ExtUI::get ## method (__VA_ARGS__) + inc, ##__VA_ARGS__)
 #define UI_DECREMENT_BY(method, inc, ...) ExtUI::set ## method(ExtUI::get ## method (__VA_ARGS__) - inc, ##__VA_ARGS__)
